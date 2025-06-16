@@ -3,24 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VisaGuide - Your Trusted Visa Partner</title>
+    <title>VisaGuide - Seamless Visa Booking</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8fafc;
         }
         .hero-bg {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
             background-size: cover;
             background-position: center;
+            background-attachment: fixed;
         }
         .card-hover {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .card-hover:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
         }
         .pulse {
             animation: pulse 2s infinite;
@@ -31,49 +34,57 @@
             100% { transform: scale(1); }
         }
         .menu-transition {
-            transition: max-height 0.3s ease-in-out;
+            transition: transform 0.3s ease-in-out;
         }
         .sticky-book {
             position: fixed;
-            bottom: 1rem;
-            right: 1rem;
+            bottom: 1.5rem;
+            right: 1.5rem;
             z-index: 50;
         }
-        .popup {
+        .form-input {
+            transition: all 0.3s ease;
+        }
+        .form-input:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #2563eb, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .coming-soon {
+            background: linear-gradient(to right, #f3f4f6, #e5e7eb);
+            border: 2px dashed #3b82f6;
+        }
+        .step-indicator {
+            transition: width 0.3s ease;
+        }
+        .form-step {
             transition: opacity 0.3s ease, transform 0.3s ease;
         }
     </style>
 </head>
-<body class="bg-gray-50">
-    <!-- Pop-up Banner -->
-    <div id="popupBanner" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-        <div class="bg-white p-6 rounded-lg shadow-xl max-w-sm mx-4 text-center">
-            <h3 class="text-lg font-bold text-gray-800 mb-4">Ready to Travel?</h3>
-            <p class="text-gray-600 mb-4">Book your visa appointment now and save 10% on your plan!</p>
-            <a href="#book" class="bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-blue-800 pulse" onclick="closePopup()">Book Now</a>
-            <button class="block mx-auto mt-4 text-gray-600 text-sm hover:text-gray-800" onclick="closePopup()">Close</button>
-        </div>
-    </div>
-
+<body>
     <!-- Navbar -->
-    <nav class="bg-white shadow-md sticky top-0 z-40">
+    <nav class="bg-white shadow-lg sticky top-0 z-40">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
+            <div class="flex justify-between items-center h-16">
                 <div class="flex items-center">
-                    <h1 class="text-xl sm:text-2xl font-bold text-blue-700">VisaGuide</h1>
+                    <h1 class="text-2xl font-bold text-blue-600">VisaGuide</h1>
                 </div>
                 <!-- Desktop Menu -->
-                <div class="hidden md:flex items-center space-x-4">
-                    <a href="#home" class="text-gray-700 hover:text-blue-700 font-medium text-sm">Home</a>
-                    <a href="#plans" class="text-gray-700 hover:text-blue-700 font-medium text-sm">Plans</a>
-                    <a href="#visa-prices" class="text-gray-700 hover:text-blue-700 font-medium text-sm">Visa Prices</a>
-                    <a href="#book" class="text-gray-700 hover:text-blue-700 font-medium text-sm">Book Appointment</a>
-                    <a href="#contact" class="text-gray-700 hover:text-blue-700 font-medium text-sm">Contact</a>
-                    <button class="bg-blue-700 text-white px-3 py-1.5 rounded-md hover:bg-blue-800 text-sm">Login</button>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#home" class="text-gray-700 hover:text-blue-600 font-medium text-sm">Home</a>
+                    <a href="#plans" class="text-gray-700 hover:text-blue-600 font-medium text-sm">Plans</a>
+                    <a href="#visa-prices" class="text-gray-700 hover:text-blue-600 font-medium text-sm">Visa Prices</a>
+                    <a href="#book" class="text-gray-700 hover:text-blue-600 font-medium text-sm">Book Now</a>
+                    <a href="#contact" class="text-gray-700 hover:text-blue-600 font-medium text-sm">Contact</a>
                 </div>
                 <!-- Mobile Menu Button -->
                 <div class="md:hidden flex items-center">
-                    <button id="menuButton" class="text-gray-700 hover:text-blue-700 focus:outline-none">
+                    <button id="menuButton" class="text-gray-700 hover:text-blue-600 focus:outline-none" aria-label="Toggle menu">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
@@ -81,256 +92,337 @@
                 </div>
             </div>
             <!-- Mobile Menu -->
-            <div id="mobileMenu" class="md:hidden max-h-0 overflow-hidden menu-transition">
-                <div class="flex flex-col space-y-2 px-4 pb-4">
-                    <a href="#home" class="text-gray-700 hover:text-blue-700 font-medium text-sm">Home</a>
-                    <a href="#plans" class="text-gray-700 hover:text-blue-700 font-medium text-sm">Plans</a>
-                    <a href="#visa-prices" class="text-gray-700 hover:text-blue-700 font-medium text-sm">Visa Prices</a>
-                    <a href="#book" class="text-gray-700 hover:text-blue-700 font-medium text-sm">Book Appointment</a>
-                    <a href="#contact" class="text-gray-700 hover:text-blue-700 font-medium text-sm">Contact</a>
-                    <button class="bg-blue-700 text-white px-3 py-1.5 rounded-md hover:bg-blue-800 text-sm w-full text-left">Login</button>
+            <div id="mobileMenu" class="md:hidden hidden menu-transition">
+                <div class="flex flex-col space-y-4 px-4 py-4 bg-white shadow-md">
+                    <a href="#home" class="text-gray-700 hover:text-blue-600 font-medium text-sm">Home</a>
+                    <a href="#plans" class="text-gray-700 hover:text-blue-600 font-medium text-sm">Plans</a>
+                    <a href="#visa-prices" class="text-gray-700 hover:text-blue-600 font-medium text-sm">Visa Prices</a>
+                    <a href="#book" class="text-gray-700 hover:text-blue-600 font-medium text-sm">Book Now</a>
+                    <a href="#contact" class="text-gray-700 hover:text-blue-600 font-medium text-sm">Contact</a>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero-bg text-white py-16 sm:py-20 md:py-24">
+    <section id="home" class="hero-bg text-white py-20 md:py-32">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Explore the World with VisaGuide</h2>
-            <p class="text-base sm:text-lg md:text-xl mb-6 max-w-xl sm:max-w-2xl mx-auto">Fast, secure visa applications with expert support for Indian travelers.</p>
-            <a href="#book" class="bg-blue-700 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-md font-semibold hover:bg-blue-800 pulse text-sm sm:text-base">Apply Now</a>
+            <h2 class="text-4xl md:text-5xl font-bold mb-6 gradient-text">Travel the World with Ease</h2>
+            <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto">Your trusted partner for hassle-free visa applications, tailored for Indian travelers.</p>
+            <a href="#book" class="inline-block bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-full font-semibold hover:from-blue-700 hover:to-purple-700 pulse text-base md:text-lg">Start Your Journey</a>
+            <p class="text-sm mt-6">Visitors: <span id="visitorCounter" class="font-semibold">0</span></p>
         </div>
     </section>
 
     <!-- Plans Section -->
-    <section id="plans" class="py-12 sm:py-16 bg-white">
+    <section id="plans" class="py-16 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-2xl sm:text-3xl font-bold text-center text-gray-800 mb-8 sm:mb-10">Choose Your Visa Plan</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-10 gradient-text">Choose Your Perfect Plan</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Basic Plan -->
-                <div class="card-hover bg-gray-50 p-4 sm:p-6 rounded-lg shadow-lg text-center">
-                    <h3 class="text-lg sm:text-xl font-semibold text-gray-800 mb-4">Basic Plan</h3>
-                    <p class="text-2xl sm:text-3xl font-bold text-blue-700 mb-4">$49</p>
-                    <ul class="text-gray-600 text-sm sm:text-base mb-6 space-y-2">
-                        <li>Online Application Support</li>
-                        <li>Document Checklist</li>
-                        <li>Email Support</li>
-                        <li>Processing Time: 7-10 Days</li>
+                <div class="card-hover bg-white p-6 rounded-xl shadow-lg border border-gray-100 text-center">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Basic Plan</h3>
+                    <p class="text-3xl font-bold text-blue-600 mb-4">$49</p>
+                    <ul class="text-gray-600 text-sm mb-6 space-y-3">
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Online Application Support</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Document Checklist</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Email Support</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Processing: 7-10 Days</li>
                     </ul>
-                    <a href="#book" class="bg-blue-700 text-white px-4 sm:px-6 py-2 rounded-md hover:bg-blue-800 text-sm sm:text-base">Choose Plan</a>
+                    <a href="#book" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700 text-sm font-semibold">Select Plan</a>
                 </div>
                 <!-- Standard Plan -->
-                <div class="card-hover bg-gray-50 p-4 sm:p-6 rounded-lg shadow-lg text-center">
-                    <h3 class="text-lg sm:text-xl font-semibold text-gray-800 mb-4">Standard Plan</h3>
-                    <p class="text-2xl sm:text-3xl font-bold text-blue-700 mb-4">$99</p>
-                    <ul class="text-gray-600 text-sm sm:text-base mb-6 space-y-2">
-                        <li>All Basic Plan Features</li>
-                        <li>Priority Document Review</li>
-                        <li>Phone Support</li>
-                        <li>Processing Time: 3-5 Days</li>
+                <div class="card-hover bg-white p-6 rounded-xl shadow-lg border border-gray-100 text-center relative">
+                    <span class="absolute top-0 right-0 bg-purple-600 text-white text-xs px-3 py-1 rounded-bl-md rounded-tr-md">Most Popular</span>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Standard Plan</h3>
+                    <p class="text-3xl font-bold text-blue-600 mb-4">$99</p>
+                    <ul class="text-gray-600 text-sm mb-6 space-y-3">
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>All Basic Plan Features</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Priority Document Review</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Phone Support</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Processing: 3-5 Days</li>
                     </ul>
-                    <a href="#book" class="bg-blue-700 text-white px-4 sm:px-6 py-2 rounded-md hover:bg-blue-800 text-sm sm:text-base">Choose Plan</a>
+                    <a href="#book" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700 text-sm font-semibold">Select Plan</a>
                 </div>
                 <!-- Premium Plan -->
-                <div class="card-hover bg-gray-50 p-4 sm:p-6 rounded-lg shadow-lg text-center">
-                    <h3 class="text-lg sm:text-xl font-semibold text-gray-800 mb-4">Premium Plan</h3>
-                    <p class="text-2xl sm:text-3xl font-bold text-blue-700 mb-4">$149</p>
-                    <ul class="text-gray-600 text-sm sm:text-base mb-6 space-y-2">
-                        <li>All Standard Plan Features</li>
-                        <li>Express Processing</li>
-                        <li>Dedicated Agent</li>
-                        <li>Processing Time: 1-2 Days</li>
+                <div class="card-hover bg-white p-6 rounded-xl shadow-lg border border-gray-100 text-center">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Premium Plan</h3>
+                    <p class="text-3xl font-bold text-blue-600 mb-4">$149</p>
+                    <ul class="text-gray-600 text-sm mb-6 space-y-3">
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>All Standard Plan Features</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Express Processing</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Dedicated Agent</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Processing: 1-2 Days</li>
                     </ul>
-                    <a href="#book" class="bg-blue-700 text-white px-4 sm:px-6 py-2 rounded-md hover:bg-blue-800 text-sm sm:text-base">Choose Plan</a>
+                    <a href="#book" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700 text-sm font-semibold">Select Plan</a>
                 </div>
             </div>
+            <p class="text-center text-gray-600 text-sm mt-8">*More plan options coming soon!</p>
         </div>
     </section>
 
     <!-- Visa Prices by Country Section -->
-    <section id="visa-prices" class="py-12 sm:py-16 bg-gray-100">
+    <section id="visa-prices" class="py-16 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-2xl sm:text-3xl font-bold text-center text-gray-800 mb-8 sm:mb-10">Visa Prices by Country (Indian Passport Holders)</h2>
-            <p class="text-center text-gray-600 text-sm sm:text-base mb-6 sm:mb-8">Explore visa fees and issuance stats for popular destinations. Verify with embassies for exact costs.</p>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-10 gradient-text">Visa Prices by Country</h2>
+            <p class="text-center text-gray-600 text-base mb-8">Explore visa fees for Indian passport holders. Verify with embassies for exact costs.</p>
+            <p class="text-center text-sm mb-6">Visitors: <span id="visaPriceCounter" class="font-semibold">0</span></p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- Thailand -->
-                <div class="card-hover bg-white p-4 sm:p-6 rounded-lg shadow-lg">
+                <div class="card-hover bg-white p-6 rounded-xl shadow-lg border border-gray-100">
                     <div class="flex items-center mb-4">
                         <img src="https://flagcdn.com/16x12/th.png" alt="Thailand Flag" class="w-6 h-4 mr-2">
-                        <h3 class="text-lg sm:text-xl font-semibold text-gray-800">Thailand</h3>
+                        <h3 class="text-xl font-semibold text-gray-800">Thailand</h3>
                     </div>
-                    <p class="text-gray-600 text-sm sm:text-base"><strong>Visa Type:</strong> Visa on Arrival</p>
-                    <p class="text-gray-600 text-sm sm:text-base"><strong>Fee:</strong> ₹4,452 (2000 THB)</p>
-                    <p class="text-gray-600 text-sm sm:text-base"><strong>Validity:</strong> 15 Days</p>
-                    <p class="text-gray-600 text-sm sm:text-base"><strong>Issued (2023, Est.):</strong> ~300K</p>
-                    <a href="#book" class="mt-4 inline-block bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-blue-800 text-sm">Apply Now</a>
+                    <p class="text-gray-600 text-sm"><strong>Location:</strong> Southeast Asia</p>
+                    <p class="text-gray-600 text-sm"><strong>Visa Type:</strong> Visa on Arrival</p>
+                    <p class="text-gray-600 text-sm"><strong>Fee:</strong> ₹4,452 (2000 THB)</p>
+                    <p class="text-gray-600 text-sm"><strong>Validity:</strong> 15 Days</p>
+                    <p class="text-gray-600 text-sm"><strong>Issued (2023, Est.):</strong> ~300K</p>
+                    <a href="#book" class="mt-4 inline-block bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 text-sm">Apply Now</a>
                 </div>
                 <!-- Indonesia -->
-                <div class="card-hover bg-white p-4 sm:p-6 rounded-lg shadow-lg">
+                <div class="card-hover bg-white p-6 rounded-xl shadow-lg border border-gray-100">
                     <div class="flex items-center mb-4">
                         <img src="https://flagcdn.com/16x12/id.png" alt="Indonesia Flag" class="w-6 h-4 mr-2">
-                        <h3 class="text-lg sm:text-xl font-semibold text-gray-800">Indonesia</h3>
+                        <h3 class="text-xl font-semibold text-gray-800">Indonesia</h3>
                     </div>
-                    <p class="text-gray-600 text-sm sm:text-base"><strong>Visa Type:</strong> Visa-Free</p>
-                    <p class="text-gray-600 text-sm sm:text-base"><strong>Fee:</strong> ₹0</p>
-                    <p class="text-gray-600 text-sm sm:text-base"><strong>Validity:</strong> 30 Days</p>
-                    <p class="text-gray-600 text-sm sm:text-base"><strong>Issued (2023, Est.):</strong> ~200K</p>
-                    <a href="#book" class="mt-4 inline-block bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-blue-800 text-sm">Apply Now</a>
+                    <p class="text-gray-600 text-sm"><strong>Location:</strong> Southeast Asia</p>
+                    <p class="text-gray-600 text-sm"><strong>Visa Type:</strong> Visa-Free</p>
+                    <p class="text-gray-600 text-sm"><strong>Fee:</strong> ₹0</p>
+                    <p class="text-gray-600 text-sm"><strong>Validity:</strong> 30 Days</p>
+                    <p class="text-gray-600 text-sm"><strong>Issued (2023, Est.):</strong> ~200K</p>
+                    <a href="#book" class="mt-4 inline-block bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 text-sm">Apply Now</a>
                 </div>
                 <!-- United Kingdom -->
-                <div class="card-hover bg-white p-4 sm:p-6 rounded-lg shadow-lg">
+                <div class="card-hover bg-white p-6 rounded-xl shadow-lg border border-gray-100">
                     <div class="flex items-center mb-4">
                         <img src="https://flagcdn.com/16x12/gb.png" alt="UK Flag" class="w-6 h-4 mr-2">
-                        <h3 class="text-lg sm:text-xl font-semibold text-gray-800">United Kingdom</h3>
+                        <h3 class="text-xl font-semibold text-gray-800">United Kingdom</h3>
                     </div>
-                    <p class="text-gray-600 text-sm sm:text-base"><strong>Visa Type:</strong> Standard Visitor Visa</p>
-                    <p class="text-gray-600 text-sm sm:text-base"><strong>Fee:</strong> ₹8,872 (£93)</p>
-                    <p class="text-gray-600 text-sm sm:text-base"><strong>Validity:</strong> 6 Months</p>
-                    <p class="text-gray-600 text-sm sm:text-base"><strong>Issued (2023, Est.):</strong> ~150K</p>
-                    <a href="#book" class="mt-4 inline-block bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-blue-800 text-sm">Apply Now</a>
+                    <p class="text-gray-600 text-sm"><strong>Location:</strong> Western Europe</p>
+                    <p class="text-gray-600 text-sm"><strong>Visa Type:</strong> Standard Visitor Visa</p>
+                    <p class="text-gray-600 text-sm"><strong>Fee:</strong> ₹8,872 (£93)</p>
+                    <p class="text-gray-600 text-sm"><strong>Validity:</strong> 6 Months</p>
+                    <p class="text-gray-600 text-sm"><strong>Issued (2023, Est.):</strong> ~150K</p>
+                    <a href="#book" class="mt-4 inline-block bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 text-sm">Apply Now</a>
                 </div>
                 <!-- Schengen (France) -->
-                <div class="card-hover bg-white p-4 sm:p-6 rounded-lg shadow-lg">
+                <div class="card-hover bg-white p-6 rounded-xl shadow-lg border border-gray-100">
                     <div class="flex items-center mb-4">
                         <img src="https://flagcdn.com/16x12/fr.png" alt="France Flag" class="w-6 h-4 mr-2">
-                        <h3 class="text-lg sm:text-xl font-semibold text-gray-800">Schengen (France)</h3>
+                        <h3 class="text-xl font-semibold text-gray-800">Schengen (France)</h3>
                     </div>
-                    <p class="text-gray-600 text-sm sm:text-base"><strong>Visa Type:</strong> Short-Stay Schengen Visa</p>
-                    <p class="text-gray-600 text-sm sm:text-base"><strong>Fee:</strong> ₹7,650 (€90)</p>
-                    <p class="text-gray-600 text-sm sm:text-base"><strong>Validity:</strong> Up to 90 Days</p>
-                    <p class="text-gray-600 text-sm sm:text-base"><strong>Issued (2023):</strong> ~100K</p>
-                    <a href="#book" class="mt-4 inline-block bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-blue-800 text-sm">Apply Now</a>
+                    <p class="text-gray-600 text-sm"><strong>Location:</strong> Western Europe</p>
+                    <p class="text-gray-600 text-sm"><strong>Visa Type:</strong> Short-Stay Schengen Visa</p>
+                    <p class="text-gray-600 text-sm"><strong>Fee:</strong> ₹7,650 (€90)</p>
+                    <p class="text-gray-600 text-sm"><strong>Validity:</strong> Up to 90 Days</p>
+                    <p class="text-gray-600 text-sm"><strong>Issued (2023):</strong> ~100K</p>
+                    <a href="#book" class="mt-4 inline-block bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 text-sm">Apply Now</a>
                 </div>
                 <!-- United States -->
-                <div class="card-hover bg-white p-4 sm:p-6 rounded-lg shadow-lg">
+                <div class="card-hover bg-white p-6 rounded-xl shadow-lg border border-gray-100">
                     <div class="flex items-center mb-4">
                         <img src="https://flagcdn.com/16x12/us.png" alt="USA Flag" class="w-6 h-4 mr-2">
-                        <h3 class="text-lg sm:text-xl font-semibold text-gray-800">United States</h3>
+                        <h3 class="text-xl font-semibold text-gray-800">United States</h3>
                     </div>
-                    <p class="text-gray-600 text-sm sm:text-base"><strong>Visa Type:</strong> Tourist Visa (B-2)</p>
-                    <p class="text-gray-600 text-sm sm:text-base"><strong>Fee:</strong> ₹15,360 ($185)</p>
-                    <p class="text-gray-600 text-sm sm:text-base"><strong>Validity:</strong> Up to 6 Months</p>
-                    <p class="text-gray-600 text-sm sm:text-base"><strong>Issued (2023, Est.):</strong> ~500K</p>
-                    <a href="#book" class="mt-4 inline-block bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-blue-800 text-sm">Apply Now</a>
+                    <p class="text-gray-600 text-sm"><strong>Location:</strong> North America</p>
+                    <p class="text-gray-600 text-sm"><strong>Visa Type:</strong> Tourist Visa (B-2)</p>
+                    <p class="text-gray-600 text-sm"><strong>Fee:</strong> ₹15,360 ($185)</p>
+                    <p class="text-gray-600 text-sm"><strong>Validity:</strong> Up to 6 Months</p>
+                    <p class="text-gray-600 text-sm"><strong>Issued (2023, Est.):</strong> ~500K</p>
+                    <a href="#book" class="mt-4 inline-block bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 text-sm">Apply Now</a>
                 </div>
                 <!-- Australia -->
-                <div class="card-hover bg-white p-4 sm:p-6 rounded-lg shadow-lg">
+                <div class="card-hover bg-white p-6 rounded-xl shadow-lg border border-gray-100">
                     <div class="flex items-center mb-4">
                         <img src="https://flagcdn.com/16x12/au.png" alt="Australia Flag" class="w-6 h-4 mr-2">
-                        <h3 class="text-lg sm:text-xl font-semibold text-gray-800">Australia</h3>
+                        <h3 class="text-xl font-semibold text-gray-800">Australia</h3>
                     </div>
-                    <p class="text-gray-600 text-sm sm:text-base"><strong>Visa Type:</strong> Tourist Visa</p>
-                    <p class="text-gray-600 text-sm sm:text-base"><strong>Fee:</strong> ₹7,470 (AUD 135)</p>
-                    <p class="text-gray-600 text-sm sm:text-base"><strong>Validity:</strong> Up to 12 Months</p>
-                    <p class="text-gray-600 text-sm sm:text-base"><strong>Issued (2023, Est.):</strong> ~120K</p>
-                    <a href="#book" class="mt-4 inline-block bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-blue-800 text-sm">Apply Now</a>
+                    <p class="text-gray-600 text-sm"><strong>Location:</strong> Oceania</p>
+                    <p class="text-gray-600 text-sm"><strong>Visa Type:</strong> Tourist Visa</p>
+                    <p class="text-gray-600 text-sm"><strong>Fee:</strong> ₹7,470 (AUD 135)</p>
+                    <p class="text-gray-600 text-sm"><strong>Validity:</strong> Up to 12 Months</p>
+                    <p class="text-gray-600 text-sm"><strong>Issued (2023, Est.):</strong> ~120K</p>
+                    <a href="#book" class="mt-4 inline-block bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 text-sm">Apply Now</a>
                 </div>
                 <!-- Canada -->
-                <div class="card-hover bg-white p-4 sm:p-6 rounded-lg shadow-lg">
+                <div class="card-hover bg-white p-6 rounded-xl shadow-lg border border-gray-100">
                     <div class="flex items-center mb-4">
                         <img src="https://flagcdn.com/16x12/ca.png" alt="Canada Flag" class="w-6 h-4 mr-2">
-                        <h3 class="text-lg sm:text-xl font-semibold text-gray-800">Canada</h3>
+                        <h3 class="text-xl font-semibold text-gray-800">Canada</h3>
                     </div>
-                    <p class="text-gray-600 text-sm sm:text-base"><strong>Visa Type:</strong> Visitor Visa</p>
-                    <p class="text-gray-600 text-sm sm:text-base"><strong>Fee:</strong> ₹5,500 (CAD 100)</p>
-                    <p class="text-gray-600 text-sm sm:text-base"><strong>Validity:</strong> Up to 6 Months</p>
-                    <p class="text-gray-600 text-sm sm:text-base"><strong>Issued (2023, Est.):</strong> ~130K</p>
-                    <a href="#book" class="mt-4 inline-block bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-blue-800 text-sm">Apply Now</a>
+                    <p class="text-gray-600 text-sm"><strong>Location:</strong> North America</p>
+                    <p class="text-gray-600 text-sm"><strong>Visa Type:</strong> Visitor Visa</p>
+                    <p class="text-gray-600 text-sm"><strong>Fee:</strong> ₹5,500 (CAD 100)</p>
+                    <p class="text-gray-600 text-sm"><strong>Validity:</strong> Up to 6 Months</p>
+                    <p class="text-gray-600 text-sm"><strong>Issued (2023, Est.):</strong> ~130K</p>
+                    <a href="#book" Propria: <div class="card-hover coming-soon p-6 rounded-xl shadow-lg border border-gray-100 text-center flex items-center justify-center">
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4 gradient-text">More Countries Coming Soon!</h3>
+                        <p class="text-gray-600 text-sm">Stay tuned for visa details on more destinations.</p>
+                    </div>
                 </div>
             </div>
-            <p class="text-center text-gray-600 text-xs sm:text-sm mt-6">*Fees and issuance counts are approximate. Check official embassy websites for updates.</p>
+            <p class="text-center text-gray-600 text-sm mt-8">*Fees and issuance counts are approximate. Check official embassy websites for updates.</p>
         </div>
     </section>
 
     <!-- Testimonial Section -->
-    <section class="py-12 sm:py-16 bg-white">
+    <section class="py-16 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-2xl sm:text-3xl font-bold text-center text-gray-800 mb-8 sm:mb-10">What Our Clients Say</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-                <div class="card-hover bg-gray-50 p-4 sm:p-6 rounded-lg shadow-lg text-center">
-                    <p class="text-gray-600 italic text-sm sm:text-base mb-4">"VisaGuide made my Schengen visa application a breeze. The support was fantastic!"</p>
-                    <p class="text-gray-800 font-semibold text-sm sm:text-base">Priya S., Mumbai</p>
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-10 gradient-text">Our Happy Travelers</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="card-hover bg-white p-6 rounded-xl shadow-lg border border-gray-100 text-center">
+                    <p class="text-gray-600 italic text-sm mb-4">"VisaGuide turned my Schengen visa process into a breeze!"</p>
+                    <p class="text-gray-800 font-semibold text-sm">Priya S., Mumbai</p>
                 </div>
-                <div class="card-hover bg-gray-50 p-4 sm:p-6 rounded-lg shadow-lg text-center">
-                    <p class="text-gray-600 italic text-sm sm:text-base mb-4">"The Premium Plan saved me so much time. Got my US visa in just 2 days!"</p>
-                    <p class="text-gray-800 font-semibold text-sm sm:text-base">Rahul M., Delhi</p>
+                <div class="card-hover bg-white p-6 rounded-xl shadow-lg border border-gray-100 text-center">
+                    <p class="text-gray-600 italic text-sm mb-4">"Premium Plan got my US visa in just 2 days!"</p>
+                    <p class="text-gray-800 font-semibold text-sm">Rahul M., Delhi</p>
                 </div>
-                <div class="card-hover bg-gray-50 p-4 sm:p-6 rounded-lg shadow-lg text-center">
-                    <p class="text-gray-600 italic text-sm sm:text-base mb-4">"Booking an appointment was so easy, and the team was very responsive."</p>
-                    <p class="text-gray-800 font-semibold text-sm sm:text-base">Anita R., Visakhapatnam</p>
+                <div class="card-hover bg-white p-6 rounded-xl shadow-lg border border-gray-100 text-center">
+                    <p class="text-gray-600 italic text-sm mb-4">"Super easy booking and responsive team!"</p>
+                    <p class="text-gray-800 font-semibold text-sm">Anita R., Visakhapatnam</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Book Appointment Section -->
-    <section id="book" class="py-12 sm:py-16 bg-gray-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-2xl sm:text-3xl font-bold text-center text-gray-800 mb-8 sm:mb-10">Book Your Appointment</h2>
-            <form id="appointmentForm" class="max-w-md mx-auto bg-white p-4 sm:p-8 rounded-lg shadow-lg">
-                <div class="mb-4">
-                    <label for="name" class="block text-gray-700 font-semibold text-sm sm:text-base mb-2">Full Name</label>
-                    <input type="text" id="name" class="w-full px-3 sm:px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-700 text-sm sm:text-base" required>
-                    <p class="text-red-500 text-xs sm:text-sm mt-1 hidden" id="nameError">Please enter your full name.</p>
+    <section id="book" class="py-16 bg-gradient-to-br from-blue-50 to-purple-50">
+        <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-10 gradient-text">Book Your Visa Appointment</h2>
+            <div class="bg-white p-8 rounded-xl shadow-2xl border border-gray-100">
+                <!-- Step Indicator -->
+                <div class="flex justify-between mb-8">
+                    <div class="flex-1 text-center">
+                        <div class="w-8 h-8 mx-auto rounded-full bg-blue-600 text-white flex items-center justify-center text-sm font-semibold">1</div>
+                        <p class="text-sm text-gray-600 mt-2">Personal Info</p>
+                        <div class="h-1 bg-gray-200 mt-2 step-indicator" id="step1Bar"></div>
+                    </div>
+                    <div class="flex-1 text-center">
+                        <div class="w-8 h-8 mx-auto rounded-full bg-gray-300 text-gray-600 flex items-center justify-center text-sm font-semibold">2</div>
+                        <p class="text-sm text-gray-600 mt-2">Appointment Details</p>
+                        <div class="h-1 bg-gray-200 mt-2 step-indicator" id="step2Bar"></div>
+                    </div>
+                    <div class="flex-1 text-center">
+                        <div class="w-8 h-8 mx-auto rounded-full bg-gray-300 text-gray-600 flex items-center justify-center text-sm font-semibold">3</div>
+                        <p class="text-sm text-gray-600 mt-2">Confirmation</p>
+                        <div class="h-1 bg-gray-200 mt-2 step-indicator" id="step3Bar"></div>
+                    </div>
                 </div>
-                <div class="mb-4">
-                    <label for="email" class="block text-gray-700 font-semibold text-sm sm:text-base mb-2">Email Address</label>
-                    <input type="email" id="email" class="w-full px-3 sm:px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-700 text-sm sm:text-base" required>
-                    <p class="text-red-500 text-xs sm:text-sm mt-1 hidden" id="emailError">Please enter a valid email address.</p>
+                <!-- Form Steps -->
+                <div id="appointmentForm" role="form" aria-label="Visa appointment booking form">
+                    <!-- Step 1: Personal Info -->
+                    <div id="step1" class="form-step">
+                        <div class="mb-6">
+                            <label for="name" class="block text-gray-700 font-semibold text-sm mb-2">Full Name</label>
+                            <div class="relative">
+                                <i class="fas fa-user absolute left-3 top-3.5 text-gray-400"></i>
+                                <input type="text" id="name" class="form-input w-full pl-10 pr-4 py-3 border rounded-lg text-sm bg-gray-50" required aria-required="true">
+                                <p class="text-red-500 text-xs mt-1 hidden" id="nameError">Please enter your full name.</p>
+                            </div>
+                        </div>
+                        <div class="mb-6">
+                            <label for="email" class="block text-gray-700 font-semibold text-sm mb-2">Email Address</label>
+                            <div class="relative">
+                                <i class="fas fa-envelope absolute left-3 top-3.5 text-gray-400"></i>
+                                <input type="email" id="email" class="form-input w-full pl-10 pr-4 py-3 border rounded-lg text-sm bg-gray-50" required aria-required="true">
+                                <p class="text-red-500 text-xs mt-1 hidden" id="emailError">Please enter a valid email address.</p>
+                            </div>
+                        </div>
+                        <div class="mb-6">
+                            <label for="phone" class="block text-gray-700 font-semibold text-sm mb-2">Phone Number</label>
+                            <div class="relative">
+                                <i class="fas fa-phone absolute left-3 top-3.5 text-gray-400"></i>
+                                <input type="tel" id="phone" class="form-input w-full pl-10 pr-4 py-3 border rounded-lg text-sm bg-gray-50" required aria-required="true">
+                                <p class="text-red-500 text-xs mt-1 hidden" id="phoneError">Please enter a valid phone number.</p>
+                            </div>
+                        </div>
+                        <button id="nextToStep2" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-full hover:from-blue-700 hover:to-purple-700 text-sm font-semibold transition-all duration-300 transform hover:scale-105">Next</button>
+                    </div>
+                    <!-- Step 2: Appointment Details -->
+                    <div id="step2" class="form-step hidden opacity-0 -translate-x-4">
+                        <div class="mb-6">
+                            <label for="date" class="block text-gray-700 font-semibold text-sm mb-2">Preferred Date</label>
+                            <div class="relative">
+                                <i class="fas fa-calendar-alt absolute left-3 top-3.5 text-gray-400"></i>
+                                <input type="date" id="date" class="form-input w-full pl-10 pr-4 py-3 border rounded-lg text-sm bg-gray-50" required aria-required="true">
+                                <p class="text-red-500 text-xs mt-1 hidden" id="dateError">Please select a date.</p>
+                            </div>
+                        </div>
+                        <div class="mb-6">
+                            <label for="plan" class="block text-gray-700 font-semibold text-sm mb-2">Select Plan</label>
+                            <div class="relative">
+                                <i class="fas fa-list absolute left-3 top-3.5 text-gray-400"></i>
+                                <select id="plan" class="form-input w-full pl-10 pr-4 py-3 border rounded-lg text-sm bg-gray-50" required aria-required="true">
+                                    <option value="">Choose a plan</option>
+                                    <option value="basic">Basic Plan - $49</option>
+                                    <option value="standard">Standard Plan - $99</option>
+                                    <option value="premium">Premium Plan - $149</option>
+                                </select>
+                                <p class="text-red-500 text-xs mt-1 hidden" id="planError">Please select a plan.</p>
+                            </div>
+                        </div>
+                        <div class="flex space-x-4">
+                            <button id="backToStep1" class="w-1/2 bg-gray-300 text-gray-700 px-6 py-3 rounded-full hover:bg-gray-400 text-sm font-semibold">Back</button>
+                            <button id="nextToStep3" class="w-1/2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-full hover:from-blue-700 hover:to-purple-700 text-sm font-semibold transition-all duration-300 transform hover:scale-105">Next</button>
+                        </div>
+                    </div>
+                    <!-- Step 3: Confirmation -->
+                    <div id="step3" class="form-step hidden opacity-0 -translate-x-4">
+                        <div class="text-center mb-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-4">Confirm Your Appointment</h3>
+                            <p class="text-gray-600 text-sm">Please review your details before submitting.</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg mb-6">
+                            <p class="text-sm text-gray-600"><strong>Name:</strong> <span id="confirmName"></span></p>
+                            <p class="text-sm text-gray-600"><strong>Email:</strong> <span id="confirmEmail"></span></p>
+                            <p class="text-sm text-gray-600"><strong>Phone:</strong> <span id="confirmPhone"></span></p>
+                            <p class="text-sm text-gray-600"><strong>Date:</strong> <span id="confirmDate"></span></p>
+                            <p class="text-sm text-gray-600"><strong>Plan:</strong> <span id="confirmPlan"></span></p>
+                        </div>
+                        <div class="flex space-x-4">
+                            <button id="backToStep2" class="w-1/2 bg-gray-300 text-gray-700 px-6 py-3 rounded-full hover:bg-gray-400 text-sm font-semibold">Back</button>
+                            <button id="submitForm" class="w-1/2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-full hover:from-blue-700 hover:to-purple-700 text-sm font-semibold transition-all duration-300 transform hover:scale-105">Confirm & Book</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="mb-4">
-                    <label for="phone" class="block text-gray-700 font-semibold text-sm sm:text-base mb-2">Phone Number</label>
-                    <input type="tel" id="phone" class="w-full px-3 sm:px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-700 text-sm sm:text-base" required>
-                    <p class="text-red-500 text-xs sm:text-sm mt-1 hidden" id="phoneError">Please enter a valid phone number.</p>
-                </div>
-                <div class="mb-4">
-                    <label for="date" class="block text-gray-700 font-semibold text-sm sm:text-base mb-2">Preferred Date</label>
-                    <input type="date" id="date" class="w-full px-3 sm:px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-700 text-sm sm:text-base" required>
-                    <p class="text-red-500 text-xs sm:text-sm mt-1 hidden" id="dateError">Please select a date.</p>
-                </div>
-                <div class="mb-4">
-                    <label for="plan" class="block text-gray-700 font-semibold text-sm sm:text-base mb-2">Select Plan</label>
-                    <select id="plan" class="w-full px-3 sm:px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-700 text-sm sm:text-base" required>
-                        <option value="">Choose a plan</option>
-                        <option value="basic">Basic Plan - $49</option>
-                        <option value="standard">Standard Plan - $99</option>
-                        <option value="premium">Premium Plan - $149</option>
-                    </select>
-                    <p class="text-red-500 text-xs sm:text-sm mt-1 hidden" id="planError">Please select a plan.</p>
-                </div>
-                <button type="submit" class="w-full bg-blue-700 text-white px-4 sm:px-6 py-2 rounded-md hover:bg-blue-800 text-sm sm:text-base pulse">Submit Appointment</button>
-            </form>
+            </div>
         </div>
     </section>
 
     <!-- Sticky Book Now Button -->
-    <a href="#book" class="sticky-book bg-blue-700 text-white px-4 py-2 rounded-full shadow-lg hover:bg-blue-800 pulse hidden md:block text-sm">Book Now</a>
+    <a href="#book" class="sticky-book bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-full shadow-lg hover:from-blue-700 hover:to-purple-700 pulse hidden md:flex items-center space-x-2 text-sm">
+        <i class="fas fa-calendar-check"></i>
+        <span>Book Now</span>
+    </a>
 
     <!-- Footer -->
-    <footer id="contact" class="bg-gray-800 text-white py-8">
+    <footer id="contact" class="bg-gray-900 text-white py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
-                    <h3 class="text-base sm:text-lg font-semibold mb-4">VisaGuide</h3>
-                    <p class="text-gray-400 text-sm sm:text-base">Simplifying travel visas for a borderless world.</p>
+                    <h3 class="text-lg font-semibold mb-4">VisaGuide</h3>
+                    <p class="text-gray-400 text-sm">Simplifying travel visas for a borderless world.</p>
                 </div>
                 <div>
-                    <h3 class="text-base sm:text-lg font-semibold mb-4">Quick Links</h3>
-                    <ul class="space-y-2">
-                        <li><a href="#plans" class="text-gray-400 hover:text-white text-sm sm:text-base">Plans</a></li>
-                        <li><a href="#visa-prices" class="text-gray-400 hover:text-white text-sm sm:text-base">Visa Prices</a></li>
-                        <li><a href="#book" class="text-gray-400 hover:text-white text-sm sm:text-base">Book Appointment</a></li>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#plans" class="text-gray-400 hover:text-blue-400 text-sm">Plans</a></li>
+                        <li><a href="#visa-prices" class="text-gray-400 hover:text-blue-400 text-sm">Visa Prices</a></li>
+                        <li><a href="#book" class="text-gray-400 hover:text-blue-400 text-sm">Book Appointment</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h3 class="text-base sm:text-lg font-semibold mb-4">Contact Us</h3>
-                    <p class="text-gray-400 text-sm sm:text-base">Email: support@visaguide.com</p>
-                    <p class="text-gray-400 text-sm sm:text-base">Phone: +1-800-VISA-GUIDE</p>
-                    <p class="text-gray-400 text-sm sm:text-base">Address: 123 Travel Lane, Mumbai, India</p>
+                    <h3 class="text-lg font-semibold mb-4">Contact Us</h3>
+                    <p class="text-gray-400 text-sm"><i class="fas fa-envelope mr-2"></i>support@visaguide.com</p>
+                    <p class="text-gray-400 text-sm"><i class="fas fa-phone mr-2"></i>+1-800-VISA-GUIDE</p>
+                    <p class="text-gray-400 text-sm"><i class="fas fa-map-marker-alt mr-2"></i>123 Travel Lane, Mumbai, India</p>
                 </div>
             </div>
-            <p class="text-center text-gray-400 text-xs sm:text-sm mt-6 sm:mt-8">© 2025 VisaGuide. All rights reserved.</p>
+            <p class="text-center text-gray-400 text-sm mt-8">© 2025 VisaGuide. All rights reserved.</p>
         </div>
     </footer>
 
@@ -339,40 +431,84 @@
         const menuButton = document.getElementById('menuButton');
         const mobileMenu = document.getElementById('mobileMenu');
         menuButton.addEventListener('click', () => {
-            if (mobileMenu.classList.contains('max-h-0')) {
-                mobileMenu.classList.remove('max-h-0');
-                mobileMenu.classList.add('max-h-screen');
-            } else {
-                mobileMenu.classList.remove('max-h-screen');
-                mobileMenu.classList.add('max-h-0');
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('menu-transition');
+        });
+
+        // Visitor counter
+        let homeCounter = localStorage.getItem('homeCounter') || 0;
+        let visaPriceCounter = localStorage.getItem('visaPriceCounter') || 0;
+
+        window.addEventListener('scroll', () => {
+            const homeSection = document.getElementById('home');
+            const visaPriceSection = document.getElementById('visa-prices');
+            const homeRect = homeSection.getBoundingClientRect();
+            const visaPriceRect = visaPriceSection.getBoundingClientRect();
+
+            if (homeRect.top >= 0 && homeRect.bottom <= window.innerHeight) {
+                homeCounter++;
+                localStorage.setItem('homeCounter', homeCounter);
+                document.getElementById('visitorCounter').textContent = homeCounter;
+            }
+
+            if (visaPriceRect.top >= 0 && visaPriceRect.bottom <= window.innerHeight) {
+                visaPriceCounter++;
+                localStorage.setItem('visaPriceCounter', visaPriceCounter);
+                document.getElementById('visaPriceCounter').textContent = visaPriceCounter;
             }
         });
 
-        // Show pop-up after 5 seconds
-        setTimeout(() => {
-            document.getElementById('popupBanner').classList.remove('hidden');
-        }, 5000);
+        // Initialize counters
+        document.getElementById('visitorCounter').textContent = homeCounter;
+        document.getElementById('visaPriceCounter').textContent = visaPriceCounter;
 
-        // Close pop-up
-        function closePopup() {
-            document.getElementById('popupBanner').classList.add('hidden');
+        // Multi-step form logic
+        const steps = [document.getElementById('step1'), document.getElementById('step2'), document.getElementById('step3')];
+        const stepBars = [document.getElementById('step1Bar'), document.getElementById('step2Bar'), document.getElementById('step3Bar')];
+        let currentStep = 1;
+
+        function updateStep(step) {
+            steps.forEach(s => {
+                s.classList.add('hidden', 'opacity-0', '-translate-x-4');
+            });
+            stepBars.forEach(b => b.classList.remove('bg-blue-600'));
+            steps[step - 1].classList.remove('hidden', 'opacity-0', '-translate-x-4');
+            steps[step - 1].classList.add('opacity-100', 'translate-x-0');
+            stepBars[step - 1].classList.add('bg-blue-600');
         }
 
-        // Form validation and submission
-        document.getElementById('appointmentForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+        document.getElementById('nextToStep2').addEventListener('click', () => {
+            if (validateStep1()) {
+                currentStep = 2;
+                updateStep(currentStep);
+            }
+        });
+
+        document.getElementById('nextToStep3').addEventListener('click', () => {
+            if (validateStep2()) {
+                updateConfirmation();
+                currentStep = 3;
+                updateStep(currentStep);
+            }
+        });
+
+        document.getElementById('backToStep1').addEventListener('click', () => {
+            currentStep = 1;
+            updateStep(currentStep);
+        });
+
+        document.getElementById('backToStep2').addEventListener('click', () => {
+            currentStep = 2;
+            updateStep(currentStep);
+        });
+
+        function validateStep1() {
             const name = document.getElementById('name').value.trim();
             const email = document.getElementById('email').value.trim();
             const phone = document.getElementById('phone').value.trim();
-            const date = document.getElementById('date').value;
-            const plan = document.getElementById('plan').value;
-
-            // Reset error messages
             document.querySelectorAll('.text-red-500').forEach(el => el.classList.add('hidden'));
 
             let isValid = true;
-
-            // Validation
             if (!name) {
                 document.getElementById('nameError').classList.remove('hidden');
                 isValid = false;
@@ -385,6 +521,15 @@
                 document.getElementById('phoneError').classList.remove('hidden');
                 isValid = false;
             }
+            return isValid;
+        }
+
+        function validateStep2() {
+            const date = document.getElementById('date').value;
+            const plan = document.getElementById('plan').value;
+            document.querySelectorAll('.text-red-500').forEach(el => el.classList.add('hidden'));
+
+            let isValid = true;
             if (!date) {
                 document.getElementById('dateError').classList.remove('hidden');
                 isValid = false;
@@ -393,13 +538,31 @@
                 document.getElementById('planError').classList.remove('hidden');
                 isValid = false;
             }
+            return isValid;
+        }
 
-            if (isValid) {
-                alert(`Appointment booked!\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nDate: ${date}\nPlan: ${plan}`);
-                this.reset();
-                closePopup();
-            }
+        function updateConfirmation() {
+            document.getElementById('confirmName').textContent = document.getElementById('name').value;
+            document.getElementById('confirmEmail').textContent = document.getElementById('email').value;
+            document.getElementById('confirmPhone').textContent = document.getElementById('phone').value;
+            document.getElementById('confirmDate').textContent = document.getElementById('date').value;
+            document.getElementById('confirmPlan').textContent = document.getElementById('plan').options[document.getElementById('plan').selectedIndex].text;
+        }
+
+        document.getElementById('submitForm').addEventListener('click', () => {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const date = document.getElementById('date').value;
+            const plan = document.getElementById('plan').value;
+            alert(`Appointment booked!\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nDate: ${date}\nPlan: ${plan}`);
+            document.getElementById('appointmentForm').reset();
+            currentStep = 1;
+            updateStep(currentStep);
         });
+
+        // Initialize form
+        updateStep(1);
     </script>
 </body>
 </html>
