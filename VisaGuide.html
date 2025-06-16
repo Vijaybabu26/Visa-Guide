@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VisaGuide - Your Trusted Visa Partner</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .menu-transition {
+            transition: max-height 0.3s ease-in-out;
+        }
+        .sticky-book {
+            position: fixed;
+            bottom: 1rem;
+            right: 1rem;
+            z-index: 50;
+        }
+        .popup {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Pop-up Banner -->
+    <div id="popupBanner" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white p-6 rounded-lg shadow-xl max-w-sm mx-4 text-center">
+            <h3 class="text-lg font-bold text-gray-800 mb-4">Ready to Travel?</h3>
+            <p class="text-gray-600 mb-4">Book your visa appointment now and save 10% on your plan!</p>
+            <a href="#book" class="bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-blue-800 pulse" onclick="closePopup()">Book Now</a>
+            <button class="block mx-auto mt-4 text-gray-600 text-sm hover:text-gray-800" onclick="closePopup()">Close</button>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <h1 class="text-xl sm:text-2xl font-bold text-blue-700">VisaGuide</h1>
+                </div>
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="#home" class="text-gray-700 hover:text-blue-700 font-medium text-sm">Home</a>
+                    <a href="#plans" class="text-gray-700 hover:text-blue-700 font-medium text-sm">Plans</a>
+                    <a href="#visa-prices" class="text-gray-700 hover:text-blue-700 font-medium text-sm">Visa Prices</a>
+                    <a href="#book" class="text-gray-700 hover:text-blue-700 font-medium text-sm">Book Appointment</a>
+                    <a href="#contact" class="text-gray-700 hover:text-blue-700 font-medium text-sm">Contact</a>
+                    <button class="bg-blue-700 text-white px-3 py-1.5 rounded-md hover:bg-blue-800 text-sm">Login</button>
+                </div>
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="menuButton" class="text-gray-700 hover:text-blue-700 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="md:hidden max-h-0 overflow-hidden menu-transition">
+                <div class="flex flex-col space-y-2 px-4 pb-4">
+                    <a href="#home" class="text-gray-700 hover:text-blue-700 font-medium text-sm">Home</a>
+                    <a href="#plans" class="text-gray-700 hover:text-blue-700 font-medium text-sm">Plans</a>
+                    <a href="#visa-prices" class="text-gray-700 hover:text-blue-700 font-medium text-sm">Visa Prices</a>
+                    <a href="#book" class="text-gray-700 hover:text-blue-700 font-medium text-sm">Book Appointment</a>
+                    <a href="#contact" class="text-gray-700 hover:text-blue-700 font-medium text-sm">Contact</a>
+                    <button class="bg-blue-700 text-white px-3 py-1.5 rounded-md hover:bg-blue-800 text-sm w-full text-left">Login</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg text-white py-16 sm:py-20 md:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Explore the World with VisaGuide</h2>
+            <p class="text-base sm:text-lg md:text-xl mb-6 max-w-xl sm:max-w-2xl mx-auto">Fast, secure visa applications with expert support for Indian travelers.</p>
+            <a href="#book" class="bg-blue-700 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-md font-semibold hover:bg-blue-800 pulse text-sm sm:text-base">Apply Now</a>
+        </div>
+    </section>
+
+    <!-- Plans Section -->
+    <section id="plans" class="py-12 sm:py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-2xl sm:text-3xl font-bold text-center text-gray-800 mb-8 sm:mb-10">Choose Your Visa Plan</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                <!-- Basic Plan -->
+                <div class="card-hover bg-gray-50 p-4 sm:p-6 rounded-lg shadow-lg text-center">
+                    <h3 class="text-lg sm:text-xl font-semibold text-gray-800 mb-4">Basic Plan</h3>
+                    <p class="text-2xl sm:text-3xl font-bold text-blue-700 mb-4">$49</p>
+                    <ul class="text-gray-600 text-sm sm:text-base mb-6 space-y-2">
+                        <li>Online Application Support</li>
+                        <li>Document Checklist</li>
+                        <li>Email Support</li>
+                        <li>Processing Time: 7-10 Days</li>
+                    </ul>
+                    <a href="#book" class="bg-blue-700 text-white px-4 sm:px-6 py-2 rounded-md hover:bg-blue-800 text-sm sm:text-base">Choose Plan</a>
+                </div>
+                <!-- Standard Plan -->
+                <div class="card-hover bg-gray-50 p-4 sm:p-6 rounded-lg shadow-lg text-center">
+                    <h3 class="text-lg sm:text-xl font-semibold text-gray-800 mb-4">Standard Plan</h3>
+                    <p class="text-2xl sm:text-3xl font-bold text-blue-700 mb-4">$99</p>
+                    <ul class="text-gray-600 text-sm sm:text-base mb-6 space-y-2">
+                        <li>All Basic Plan Features</li>
+                        <li>Priority Document Review</li>
+                        <li>Phone Support</li>
+                        <li>Processing Time: 3-5 Days</li>
+                    </ul>
+                    <a href="#book" class="bg-blue-700 text-white px-4 sm:px-6 py-2 rounded-md hover:bg-blue-800 text-sm sm:text-base">Choose Plan</a>
+                </div>
+                <!-- Premium Plan -->
+                <div class="card-hover bg-gray-50 p-4 sm:p-6 rounded-lg shadow-lg text-center">
+                    <h3 class="text-lg sm:text-xl font-semibold text-gray-800 mb-4">Premium Plan</h3>
+                    <p class="text-2xl sm:text-3xl font-bold text-blue-700 mb-4">$149</p>
+                    <ul class="text-gray-600 text-sm sm:text-base mb-6 space-y-2">
+                        <li>All Standard Plan Features</li>
+                        <li>Express Processing</li>
+                        <li>Dedicated Agent</li>
+                        <li>Processing Time: 1-2 Days</li>
+                    </ul>
+                    <a href="#book" class="bg-blue-700 text-white px-4 sm:px-6 py-2 rounded-md hover:bg-blue-800 text-sm sm:text-base">Choose Plan</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visa Prices by Country Section -->
+    <section id="visa-prices" class="py-12 sm:py-16 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-2xl sm:text-3xl font-bold text-center text-gray-800 mb-8 sm:mb-10">Visa Prices by Country (Indian Passport Holders)</h2>
+            <p class="text-center text-gray-600 text-sm sm:text-base mb-6 sm:mb-8">Explore visa fees and issuance stats for popular destinations. Verify with embassies for exact costs.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                <!-- Thailand -->
+                <div class="card-hover bg-white p-4 sm:p-6 rounded-lg shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <img src="https://flagcdn.com/16x12/th.png" alt="Thailand Flag" class="w-6 h-4 mr-2">
+                        <h3 class="text-lg sm:text-xl font-semibold text-gray-800">Thailand</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm sm:text-base"><strong>Visa Type:</strong> Visa on Arrival</p>
+                    <p class="text-gray-600 text-sm sm:text-base"><strong>Fee:</strong> ₹4,452 (2000 THB)</p>
+                    <p class="text-gray-600 text-sm sm:text-base"><strong>Validity:</strong> 15 Days</p>
+                    <p class="text-gray-600 text-sm sm:text-base"><strong>Issued (2023, Est.):</strong> ~300K</p>
+                    <a href="#book" class="mt-4 inline-block bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-blue-800 text-sm">Apply Now</a>
+                </div>
+                <!-- Indonesia -->
+                <div class="card-hover bg-white p-4 sm:p-6 rounded-lg shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <img src="https://flagcdn.com/16x12/id.png" alt="Indonesia Flag" class="w-6 h-4 mr-2">
+                        <h3 class="text-lg sm:text-xl font-semibold text-gray-800">Indonesia</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm sm:text-base"><strong>Visa Type:</strong> Visa-Free</p>
+                    <p class="text-gray-600 text-sm sm:text-base"><strong>Fee:</strong> ₹0</p>
+                    <p class="text-gray-600 text-sm sm:text-base"><strong>Validity:</strong> 30 Days</p>
+                    <p class="text-gray-600 text-sm sm:text-base"><strong>Issued (2023, Est.):</strong> ~200K</p>
+                    <a href="#book" class="mt-4 inline-block bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-blue-800 text-sm">Apply Now</a>
+                </div>
+                <!-- United Kingdom -->
+                <div class="card-hover bg-white p-4 sm:p-6 rounded-lg shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <img src="https://flagcdn.com/16x12/gb.png" alt="UK Flag" class="w-6 h-4 mr-2">
+                        <h3 class="text-lg sm:text-xl font-semibold text-gray-800">United Kingdom</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm sm:text-base"><strong>Visa Type:</strong> Standard Visitor Visa</p>
+                    <p class="text-gray-600 text-sm sm:text-base"><strong>Fee:</strong> ₹8,872 (£93)</p>
+                    <p class="text-gray-600 text-sm sm:text-base"><strong>Validity:</strong> 6 Months</p>
+                    <p class="text-gray-600 text-sm sm:text-base"><strong>Issued (2023, Est.):</strong> ~150K</p>
+                    <a href="#book" class="mt-4 inline-block bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-blue-800 text-sm">Apply Now</a>
+                </div>
+                <!-- Schengen (France) -->
+                <div class="card-hover bg-white p-4 sm:p-6 rounded-lg shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <img src="https://flagcdn.com/16x12/fr.png" alt="France Flag" class="w-6 h-4 mr-2">
+                        <h3 class="text-lg sm:text-xl font-semibold text-gray-800">Schengen (France)</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm sm:text-base"><strong>Visa Type:</strong> Short-Stay Schengen Visa</p>
+                    <p class="text-gray-600 text-sm sm:text-base"><strong>Fee:</strong> ₹7,650 (€90)</p>
+                    <p class="text-gray-600 text-sm sm:text-base"><strong>Validity:</strong> Up to 90 Days</p>
+                    <p class="text-gray-600 text-sm sm:text-base"><strong>Issued (2023):</strong> ~100K</p>
+                    <a href="#book" class="mt-4 inline-block bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-blue-800 text-sm">Apply Now</a>
+                </div>
+                <!-- United States -->
+                <div class="card-hover bg-white p-4 sm:p-6 rounded-lg shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <img src="https://flagcdn.com/16x12/us.png" alt="USA Flag" class="w-6 h-4 mr-2">
+                        <h3 class="text-lg sm:text-xl font-semibold text-gray-800">United States</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm sm:text-base"><strong>Visa Type:</strong> Tourist Visa (B-2)</p>
+                    <p class="text-gray-600 text-sm sm:text-base"><strong>Fee:</strong> ₹15,360 ($185)</p>
+                    <p class="text-gray-600 text-sm sm:text-base"><strong>Validity:</strong> Up to 6 Months</p>
+                    <p class="text-gray-600 text-sm sm:text-base"><strong>Issued (2023, Est.):</strong> ~500K</p>
+                    <a href="#book" class="mt-4 inline-block bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-blue-800 text-sm">Apply Now</a>
+                </div>
+                <!-- Australia -->
+                <div class="card-hover bg-white p-4 sm:p-6 rounded-lg shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <img src="https://flagcdn.com/16x12/au.png" alt="Australia Flag" class="w-6 h-4 mr-2">
+                        <h3 class="text-lg sm:text-xl font-semibold text-gray-800">Australia</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm sm:text-base"><strong>Visa Type:</strong> Tourist Visa</p>
+                    <p class="text-gray-600 text-sm sm:text-base"><strong>Fee:</strong> ₹7,470 (AUD 135)</p>
+                    <p class="text-gray-600 text-sm sm:text-base"><strong>Validity:</strong> Up to 12 Months</p>
+                    <p class="text-gray-600 text-sm sm:text-base"><strong>Issued (2023, Est.):</strong> ~120K</p>
+                    <a href="#book" class="mt-4 inline-block bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-blue-800 text-sm">Apply Now</a>
+                </div>
+                <!-- Canada -->
+                <div class="card-hover bg-white p-4 sm:p-6 rounded-lg shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <img src="https://flagcdn.com/16x12/ca.png" alt="Canada Flag" class="w-6 h-4 mr-2">
+                        <h3 class="text-lg sm:text-xl font-semibold text-gray-800">Canada</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm sm:text-base"><strong>Visa Type:</strong> Visitor Visa</p>
+                    <p class="text-gray-600 text-sm sm:text-base"><strong>Fee:</strong> ₹5,500 (CAD 100)</p>
+                    <p class="text-gray-600 text-sm sm:text-base"><strong>Validity:</strong> Up to 6 Months</p>
+                    <p class="text-gray-600 text-sm sm:text-base"><strong>Issued (2023, Est.):</strong> ~130K</p>
+                    <a href="#book" class="mt-4 inline-block bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-blue-800 text-sm">Apply Now</a>
+                </div>
+            </div>
+            <p class="text-center text-gray-600 text-xs sm:text-sm mt-6">*Fees and issuance counts are approximate. Check official embassy websites for updates.</p>
+        </div>
+    </section>
+
+    <!-- Testimonial Section -->
+    <section class="py-12 sm:py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-2xl sm:text-3xl font-bold text-center text-gray-800 mb-8 sm:mb-10">What Our Clients Say</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                <div class="card-hover bg-gray-50 p-4 sm:p-6 rounded-lg shadow-lg text-center">
+                    <p class="text-gray-600 italic text-sm sm:text-base mb-4">"VisaGuide made my Schengen visa application a breeze. The support was fantastic!"</p>
+                    <p class="text-gray-800 font-semibold text-sm sm:text-base">Priya S., Mumbai</p>
+                </div>
+                <div class="card-hover bg-gray-50 p-4 sm:p-6 rounded-lg shadow-lg text-center">
+                    <p class="text-gray-600 italic text-sm sm:text-base mb-4">"The Premium Plan saved me so much time. Got my US visa in just 2 days!"</p>
+                    <p class="text-gray-800 font-semibold text-sm sm:text-base">Rahul M., Delhi</p>
+                </div>
+                <div class="card-hover bg-gray-50 p-4 sm:p-6 rounded-lg shadow-lg text-center">
+                    <p class="text-gray-600 italic text-sm sm:text-base mb-4">"Booking an appointment was so easy, and the team was very responsive."</p>
+                    <p class="text-gray-800 font-semibold text-sm sm:text-base">Anita R., Visakhapatnam</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Book Appointment Section -->
+    <section id="book" class="py-12 sm:py-16 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-2xl sm:text-3xl font-bold text-center text-gray-800 mb-8 sm:mb-10">Book Your Appointment</h2>
+            <form id="appointmentForm" class="max-w-md mx-auto bg-white p-4 sm:p-8 rounded-lg shadow-lg">
+                <div class="mb-4">
+                    <label for="name" class="block text-gray-700 font-semibold text-sm sm:text-base mb-2">Full Name</label>
+                    <input type="text" id="name" class="w-full px-3 sm:px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-700 text-sm sm:text-base" required>
+                    <p class="text-red-500 text-xs sm:text-sm mt-1 hidden" id="nameError">Please enter your full name.</p>
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-gray-700 font-semibold text-sm sm:text-base mb-2">Email Address</label>
+                    <input type="email" id="email" class="w-full px-3 sm:px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-700 text-sm sm:text-base" required>
+                    <p class="text-red-500 text-xs sm:text-sm mt-1 hidden" id="emailError">Please enter a valid email address.</p>
+                </div>
+                <div class="mb-4">
+                    <label for="phone" class="block text-gray-700 font-semibold text-sm sm:text-base mb-2">Phone Number</label>
+                    <input type="tel" id="phone" class="w-full px-3 sm:px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-700 text-sm sm:text-base" required>
+                    <p class="text-red-500 text-xs sm:text-sm mt-1 hidden" id="phoneError">Please enter a valid phone number.</p>
+                </div>
+                <div class="mb-4">
+                    <label for="date" class="block text-gray-700 font-semibold text-sm sm:text-base mb-2">Preferred Date</label>
+                    <input type="date" id="date" class="w-full px-3 sm:px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-700 text-sm sm:text-base" required>
+                    <p class="text-red-500 text-xs sm:text-sm mt-1 hidden" id="dateError">Please select a date.</p>
+                </div>
+                <div class="mb-4">
+                    <label for="plan" class="block text-gray-700 font-semibold text-sm sm:text-base mb-2">Select Plan</label>
+                    <select id="plan" class="w-full px-3 sm:px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-700 text-sm sm:text-base" required>
+                        <option value="">Choose a plan</option>
+                        <option value="basic">Basic Plan - $49</option>
+                        <option value="standard">Standard Plan - $99</option>
+                        <option value="premium">Premium Plan - $149</option>
+                    </select>
+                    <p class="text-red-500 text-xs sm:text-sm mt-1 hidden" id="planError">Please select a plan.</p>
+                </div>
+                <button type="submit" class="w-full bg-blue-700 text-white px-4 sm:px-6 py-2 rounded-md hover:bg-blue-800 text-sm sm:text-base pulse">Submit Appointment</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Sticky Book Now Button -->
+    <a href="#book" class="sticky-book bg-blue-700 text-white px-4 py-2 rounded-full shadow-lg hover:bg-blue-800 pulse hidden md:block text-sm">Book Now</a>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-gray-800 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                <div>
+                    <h3 class="text-base sm:text-lg font-semibold mb-4">VisaGuide</h3>
+                    <p class="text-gray-400 text-sm sm:text-base">Simplifying travel visas for a borderless world.</p>
+                </div>
+                <div>
+                    <h3 class="text-base sm:text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#plans" class="text-gray-400 hover:text-white text-sm sm:text-base">Plans</a></li>
+                        <li><a href="#visa-prices" class="text-gray-400 hover:text-white text-sm sm:text-base">Visa Prices</a></li>
+                        <li><a href="#book" class="text-gray-400 hover:text-white text-sm sm:text-base">Book Appointment</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-base sm:text-lg font-semibold mb-4">Contact Us</h3>
+                    <p class="text-gray-400 text-sm sm:text-base">Email: support@visaguide.com</p>
+                    <p class="text-gray-400 text-sm sm:text-base">Phone: +1-800-VISA-GUIDE</p>
+                    <p class="text-gray-400 text-sm sm:text-base">Address: 123 Travel Lane, Mumbai, India</p>
+                </div>
+            </div>
+            <p class="text-center text-gray-400 text-xs sm:text-sm mt-6 sm:mt-8">© 2025 VisaGuide. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle mobile menu
+        const menuButton = document.getElementById('menuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        menuButton.addEventListener('click', () => {
+            if (mobileMenu.classList.contains('max-h-0')) {
+                mobileMenu.classList.remove('max-h-0');
+                mobileMenu.classList.add('max-h-screen');
+            } else {
+                mobileMenu.classList.remove('max-h-screen');
+                mobileMenu.classList.add('max-h-0');
+            }
+        });
+
+        // Show pop-up after 5 seconds
+        setTimeout(() => {
+            document.getElementById('popupBanner').classList.remove('hidden');
+        }, 5000);
+
+        // Close pop-up
+        function closePopup() {
+            document.getElementById('popupBanner').classList.add('hidden');
+        }
+
+        // Form validation and submission
+        document.getElementById('appointmentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const date = document.getElementById('date').value;
+            const plan = document.getElementById('plan').value;
+
+            // Reset error messages
+            document.querySelectorAll('.text-red-500').forEach(el => el.classList.add('hidden'));
+
+            let isValid = true;
+
+            // Validation
+            if (!name) {
+                document.getElementById('nameError').classList.remove('hidden');
+                isValid = false;
+            }
+            if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                document.getElementById('emailError').classList.remove('hidden');
+                isValid = false;
+            }
+            if (!phone || !/^\+?\d{10,}$/.test(phone.replace(/\D/g, ''))) {
+                document.getElementById('phoneError').classList.remove('hidden');
+                isValid = false;
+            }
+            if (!date) {
+                document.getElementById('dateError').classList.remove('hidden');
+                isValid = false;
+            }
+            if (!plan) {
+                document.getElementById('planError').classList.remove('hidden');
+                isValid = false;
+            }
+
+            if (isValid) {
+                alert(`Appointment booked!\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nDate: ${date}\nPlan: ${plan}`);
+                this.reset();
+                closePopup();
+            }
+        });
+    </script>
+</body>
+</html>
