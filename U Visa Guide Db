@@ -124,3 +124,21 @@ vg_pending_applications	INTEGER	Still under review	vg_pending_applications
 vg_total_appointments	INTEGER	Scheduled appointments	vg_total_appointments
 vg_total_agencies	INTEGER	Registered agencies	vg_total_agencies
 vg_total_users	INTEGER	All users (applicants + agency + admin)	vg_total_users
+
+
+
+
+he VisaGuide application database schema includes 10 tables:
+
+vg_users_user
+vg_users_agency_profile
+vg_users_applicant_profile
+vg_visas_country
+vg_visas_visa_type
+vg_visas_application
+vg_visas_application_documents
+vg_visas_application_logs
+vg_appointments_appointment
+vg_admin_visa_review
+vg_notifications_alert
+vg_admin_dashboard_metrics (optional)
