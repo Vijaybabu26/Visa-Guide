@@ -152,3 +152,20 @@ pending_applications	INTEGER	Still under review
 total_appointments	INTEGER	Scheduled appointments
 total_agencies	INTEGER	Registered agencies
 total_users	INTEGER	All users (applicants + agency + admin)
+
+
+
+
+No.	Table Name	Purpose
+1	users_user	User authentication, roles, profile picture, social login
+2	users_agency_profile	Agency-specific data linked to a user
+3	users_applicant_profile	Applicant-specific personal details
+4	visas_country	Country list with image and description
+5	visas_visa_type	Visa types per country with fee and offer price
+6	visas_application	Visa applications by applicants
+7	visas_application_documents	Uploaded documents per application
+8	visas_application_logs	Track status changes with user and timestamps
+9	appointments_appointment	Visa appointment bookings
+10	admin_visa_review	Admin remarks and status decision
+11	notifications_alert	In-app/email/SMS alerts for users
+12	admin_dashboard_metrics
