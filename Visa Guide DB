@@ -1,0 +1,154 @@
+VisaGuide application, now including a proper alert/notification system to support in-app alerts, email/SMS, and tracking of user actions.
+
+This schema supports:
+
+👥 User system with roles: Admin, Agency, Applicant
+
+📑 Visa applications, documents, appointments
+
+🌍 Countries with images and descriptions
+
+🛂 Visa types with fees, discounts
+
+🧾 Application logs
+
+📩 Alerts system (email/SMS + in-app)
+
+📊 Optional dashboard metrics
+
+🧩 FULL DATABASE SCHEMA – Updated for In-App Alerts
+👤 users_user
+Field	Type	Description
+id	PK	Auto ID
+email	VARCHAR(254)	Unique login identifier
+username	VARCHAR(150)	Optional username
+password	VARCHAR(128)	Encrypted password
+role	VARCHAR(20)	admin, agency, applicant
+profile_picture	VARCHAR(255)	Path to profile picture
+auth_provider	VARCHAR(20)	email, facebook, google, etc.
+social_uid	VARCHAR(255)	Social ID from provider
+is_active	BOOLEAN	User status
+created_at	TIMESTAMP	Timestamp of registration
+
+🏢 users_agency_profile
+Field	Type	Description
+id	PK	Auto ID
+user_id	FK → users_user	Agency user ID
+agency_name	VARCHAR(255)	Name of agency
+license_number	VARCHAR(100)	Registration/license number
+address	TEXT	Agency address
+phone_number	VARCHAR(20)	Contact number
+
+🙋 users_applicant_profile
+Field	Type	Description
+id	PK	Auto ID
+user_id	FK → users_user	Applicant user ID
+agency_id	FK → users_agency_profile	Nullable agency reference
+full_name	VARCHAR(255)	Full name
+date_of_birth	DATE	DOB
+passport_number	VARCHAR(100)	Passport no.
+nationality	VARCHAR(100)	Nationality
+contact_number	VARCHAR(20)	Contact phone
+address	TEXT	Address
+
+🌍 visas_country
+Field	Type	Description
+id	PK	Auto ID
+name	VARCHAR(100)	Country name
+iso_code	VARCHAR(10)	ISO code (e.g., IN, US)
+image	VARCHAR(255)	Image (flag or background)
+description	TEXT	Country overview
+
+🛂 visas_visa_type
+Field	Type	Description
+id	PK	Auto ID
+country_id	FK → visas_country	Visa belongs to which country
+visa_name	VARCHAR(100)	Name of visa (e.g., Tourist Visa)
+category	VARCHAR(50)	Tourist, Student, etc.
+description	TEXT	Description
+requirements	TEXT	Documents needed
+duration	VARCHAR(50)	Validity (e.g., 90 days)
+fee	NUMERIC(10, 2)	Original price
+offer_price	NUMERIC(10, 2)	Discounted price
+processing_time	VARCHAR(100)	Estimated duration
+
+📝 visas_application
+Field	Type	Description
+id	PK	Auto ID
+applicant_id	FK → users_applicant_profile	Who applied
+visa_type_id	FK → visas_visa_type	Which visa type
+status	VARCHAR(30)	Application status
+application_date	TIMESTAMP	Date submitted
+updated_at	TIMESTAMP	Last update
+submitted_by_agency	BOOLEAN	True if by agency
+
+📂 visas_application_documents
+Field	Type	Description
+id	PK	Auto ID
+application_id	FK → visas_application	Related application
+document_type	VARCHAR(100)	Type (Passport, Photo, etc.)
+file_path	VARCHAR(255)	Storage path
+uploaded_at	TIMESTAMP	Upload timestamp
+
+📜 visas_application_logs
+Field	Type	Description
+id	PK	Auto ID
+application_id	FK → visas_application	App being tracked
+changed_by	FK → users_user	Admin or agency who changed
+previous_status	VARCHAR(30)	Old status
+new_status	VARCHAR(30)	New status
+change_timestamp	TIMESTAMP	Timestamp of change
+notes	TEXT	Comments or reason
+
+📅 appointments_appointment
+Field	Type	Description
+id	PK	Auto ID
+application_id	FK → visas_application	Linked visa app
+appointment_date	DATE	Date of appointment
+appointment_time	TIME	Time of appointment
+location	VARCHAR(255)	Visa center location
+status	VARCHAR(20)	Scheduled, Completed, Missed
+remarks	TEXT	Optional remarks
+
+🧾 admin_visa_review
+Field	Type	Description
+id	PK	Auto ID
+application_id	FK → visas_application	Which application
+reviewer_id	FK → users_user	Admin who reviewed
+review_date	TIMESTAMP	When reviewed
+status	VARCHAR(20)	Approved, Rejected, Hold
+notes	TEXT	Internal notes
+
+📩 notifications_alert
+Field	Type	Description
+id	PK	Auto ID
+user_id	FK → users_user	Receiver of the alert
+title	VARCHAR(255)	Alert title
+message	TEXT	Full message content
+is_read	BOOLEAN DEFAULT FALSE	Whether the user has seen it
+created_at	TIMESTAMP	When generated
+alert_type	VARCHAR(50)	system, status_change, appointment, etc.
+sent_via_email	BOOLEAN DEFAULT FALSE	Email sent flag
+sent_via_sms	BOOLEAN DEFAULT FALSE	SMS sent flag
+
+✅ Use Django signals to automatically create entries here when:
+
+A new application is submitted
+
+Status changes
+
+Appointment is booked
+
+Admin adds remarks
+
+📊 admin_dashboard_metrics (Optional)
+Field	Type	Description
+id	PK	Auto ID
+snapshot_date	DATE	Daily summary date
+total_applications	INTEGER	All applications
+approved_applications	INTEGER	Approved ones
+rejected_applications	INTEGER	Rejected ones
+pending_applications	INTEGER	Still under review
+total_appointments	INTEGER	Scheduled appointments
+total_agencies	INTEGER	Registered agencies
+total_users	INTEGER	All users (applicants + agency + admin)
