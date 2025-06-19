@@ -1,0 +1,126 @@
+👤 vg_users_user
+
+Field	Type	Description	Keyword
+vg_id	PK	Auto ID	vg_id
+vg_email	VARCHAR(254)	Unique login identifier	vg_email
+vg_username	VARCHAR(150)	Optional username	vg_username
+vg_password	VARCHAR(128)	Encrypted password	vg_password
+vg_role	VARCHAR(20)	admin, agency, applicant	vg_role
+vg_profile_picture	VARCHAR(255)	Path to profile picture	vg_profile_picture
+vg_auth_provider	VARCHAR(20)	email, facebook, google, etc.	vg_auth_provider
+vg_social_uid	VARCHAR(255)	Social ID from provider	vg_social_uid
+vg_is_active	BOOLEAN	User status	vg_is_active
+vg_created_at	TIMESTAMP	Timestamp of registration	vg_created_at
+🏢 vg_users_agency_profile
+
+Field	Type	Description	Keyword
+vg_id	PK	Auto ID	vg_id
+vg_user_id	FK → vg_users_user	Agency user ID	vg_user_id
+vg_agency_name	VARCHAR(255)	Name of agency	vg_agency_name
+vg_license_number	VARCHAR(100)	Registration/license number	vg_license_number
+vg_address	TEXT	Agency address	vg_address
+vg_phone_number	VARCHAR(20)	Contact number	vg_phone_number
+🙋 vg_users_applicant_profile
+
+Field	Type	Description	Keyword
+vg_id	PK	Auto ID	vg_id
+vg_user_id	FK → vg_users_user	Applicant user ID	vg_user_id
+vg_agency_id	FK → vg_users_agency_profile	Nullable agency reference	vg_agency_id
+vg_full_name	VARCHAR(255)	Full name	vg_full_name
+vg_date_of_birth	DATE	DOB	vg_date_of_birth
+vg_passport_number	VARCHAR(100)	Passport no.	vg_passport_number
+vg_nationality	VARCHAR(100)	Nationality	vg_nationality
+vg_contact_number	VARCHAR(20)	Contact phone	vg_contact_number
+vg_address	TEXT	Address	vg_address
+🌍 vg_visas_country
+
+Field	Type	Description	Keyword
+vg_id	PK	Auto ID	vg_id
+vg_name	VARCHAR(100)	Country name	vg_name
+vg_iso_code	VARCHAR(10)	ISO code (e.g., IN, US)	vg_iso_code
+vg_image	VARCHAR(255)	Image (flag or background)	vg_image
+vg_description	TEXT	Country overview	vg_description
+🛂 vg_visas_visa_type
+
+Field	Type	Description	Keyword
+vg_id	PK	Auto ID	vg_id
+vg_country_id	FK → vg_visas_country	Visa belongs to which country	vg_country_id
+vg_visa_name	VARCHAR(100)	Name of visa (e.g., Tourist Visa)	vg_visa_name
+vg_category	VARCHAR(50)	Tourist, Student, etc.	vg_category
+vg_description	TEXT	Description	vg_description
+vg_requirements	TEXT	Documents needed	vg_requirements
+vg_duration	VARCHAR(50)	Validity (e.g., 90 days)	vg_duration
+vg_fee	NUMERIC(10, 2)	Original price	vg_fee
+vg_offer_price	NUMERIC(10, 2)	Discounted price	vg_offer_price
+vg_processing_time	VARCHAR(100)	Estimated duration	vg_processing_time
+📝 vg_visas_application
+
+Field	Type	Description	Keyword
+vg_id	PK	Auto ID	vg_id
+vg_applicant_id	FK → vg_users_applicant_profile	Who applied	vg_applicant_id
+vg_visa_type_id	FK → vg_visas_visa_type	Which visa type	vg_visa_type_id
+vg_status	VARCHAR(30)	Application status	vg_status
+vg_application_date	TIMESTAMP	Date submitted	vg_application_date
+vg_updated_at	TIMESTAMP	Last update	vg_updated_at
+vg_submitted_by_agency	BOOLEAN	True if by agency	vg_submitted_by_agency
+📂 vg_visas_application_documents
+
+Field	Type	Description	Keyword
+vg_id	PK	Auto ID	vg_id
+vg_application_id	FK → vg_visas_application	Related application	vg_application_id
+vg_document_type	VARCHAR(100)	Type (Passport, Photo, etc.)	vg_document_type
+vg_file_path	VARCHAR(255)	Storage path	vg_file_path
+vg_uploaded_at	TIMESTAMP	Upload timestamp	vg_uploaded_at
+📜 vg_visas_application_logs
+
+Field	Type	Description	Keyword
+vg_id	PK	Auto ID	vg_id
+vg_application_id	FK → vg_visas_application	App being tracked	vg_application_id
+vg_changed_by	FK → vg_users_user	Admin or agency who changed	vg_changed_by
+vg_previous_status	VARCHAR(30)	Old status	vg_previous_status
+vg_new_status	VARCHAR(30)	New status	vg_new_status
+vg_change_timestamp	TIMESTAMP	Timestamp of change	vg_change_timestamp
+vg_notes	TEXT	Comments or reason	vg_notes
+📅 vg_appointments_appointment
+
+Field	Type	Description	Keyword
+vg_id	PK	Auto ID	vg_id
+vg_application_id	FK → vg_visas_application	Linked visa app	vg_application_id
+vg_appointment_date	DATE	Date of appointment	vg_appointment_date
+vg_appointment_time	TIME	Time of appointment	vg_appointment_time
+vg_location	VARCHAR(255)	Visa center location	vg_location
+vg_status	VARCHAR(20)	Scheduled, Completed, Missed	vg_status
+vg_remarks	TEXT	Optional remarks	vg_remarks
+🧾 vg_admin_visa_review
+
+Field	Type	Description	Keyword
+vg_id	PK	Auto ID	vg_id
+vg_application_id	FK → vg_visas_application	Which application	vg_application_id
+vg_reviewer_id	FK → vg_users_user	Admin who reviewed	vg_reviewer_id
+vg_review_date	TIMESTAMP	When reviewed	vg_review_date
+vg_status	VARCHAR(20)	Approved, Rejected, Hold	vg_status
+vg_notes	TEXT	Internal notes	vg_notes
+📩 vg_notifications_alert
+
+Field	Type	Description	Keyword
+vg_id	PK	Auto ID	vg_id
+vg_user_id	FK → vg_users_user	Receiver of the alert	vg_user_id
+vg_title	VARCHAR(255)	Alert title	vg_title
+vg_message	TEXT	Full message content	vg_message
+vg_is_read	BOOLEAN DEFAULT FALSE	Whether the user has seen it	vg_is_read
+vg_created_at	TIMESTAMP	When generated	vg_created_at
+vg_alert_type	VARCHAR(50)	system, status_change, appointment, etc.	vg_alert_type
+vg_sent_via_email	BOOLEAN DEFAULT FALSE	Email sent flag	vg_sent_via_email
+vg_sent_via_sms	BOOLEAN DEFAULT FALSE	SMS sent flag	vg_sent_via_sms
+📊 vg_admin_dashboard_metrics (Optional)
+
+Field	Type	Description	Keyword
+vg_id	PK	Auto ID	vg_id
+vg_snapshot_date	DATE	Daily summary date	vg_snapshot_date
+vg_total_applications	INTEGER	All applications	vg_total_applications
+vg_approved_applications	INTEGER	Approved ones	vg_approved_applications
+vg_rejected_applications	INTEGER	Rejected ones	vg_rejected_applications
+vg_pending_applications	INTEGER	Still under review	vg_pending_applications
+vg_total_appointments	INTEGER	Scheduled appointments	vg_total_appointments
+vg_total_agencies	INTEGER	Registered agencies	vg_total_agencies
+vg_total_users	INTEGER	All users (applicants + agency + admin)	vg_total_users
